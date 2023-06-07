@@ -1,0 +1,85 @@
+\subsection*{Логическая равносильность формул}
+\begin{definition}
+    Формулы $\Phi$, $\Uppsi$ называются \textit{логически равносильными} (или просто \textit{равносильными}), если они принимают одинаковые логические значения при любых истинностных значениях их переменных.
+
+    Это равносильно условию $\vDash\Phi\Leftrightarrow\Uppsi$.
+\end{definition}
+
+\begin{definition}
+    Для обозначения логически эквивалентных формул используется символическая запись $\Phi = \Uppsi$, или $\Phi \cong \Uppsi$.
+
+    Такие выражения называют \textit{логическими равенствами} или просто \textit{равенствами} формул.
+\end{definition}
+
+\begin{lemma}[1]
+    Справедливы следующие равенства формул:
+    \begin{enumerate}
+        \item Свойства ассоциативности дизъюнкции и конъюнкции:
+        
+        $X\lor(Y\lor Z) = (X\lor Y)\lor Z$
+
+        $X\land (Y\land Z) = (X\land Y)\land Z$
+
+        \item Свойства коммутативности дизъюнкции и конъюнкции:
+        
+        $X\lor Y = Y\lor X$
+
+        $X\land Y = Y\land X$
+
+        \item Свойства идемпотентности дизъюнкции и конъюнкции:
+        
+        $X\lor X = X$
+
+        $X\land X = X$
+
+        \item Законы дистрибутивности конъюнкции относительно дизъюнкции и дизъюнкции относительно конъюнкции:
+        
+        $X\land(Y\lor Z) = (X\land Y)\lor(X\land Z)$
+
+        $X\lor(Y\land Z) = (X\lor Y)\land(X\lor Z)$
+
+        \item Законы де Моргана:
+        
+        $\lnot(X\land Y) = \lnot X \lor \lnot Y$
+
+        $\lnot(X\lor Y) = \lnot X \land \lnot Y$
+
+        \item Законы поглощения:
+        
+        $(X\land Y)\lor X = X$
+
+        $(X\lor Y)\land X = X$
+
+        \item Закон двойного отрицания:
+        
+        $\lnot\lnot X = X$
+
+        \item Взаимосвязь импликации с дизъюнкцией и конъюнкцией:
+        
+        $X\Rightarrow Y = \lnot X \lor Y$
+
+        $X\Rightarrow Y = \lnot(X\land \lnot Y)$
+
+        \item Взаимосвязь эквивалентности с импликацией, дизъюнкцией и конъюнкцией:
+        
+        $X\Leftrightarrow Y = (X\Rightarrow Y)\land(Y\Rightarrow X)$
+
+        $X\Leftrightarrow Y = (\lnot X \lor Y) \land (X\lor \lnot Y)$
+    \end{enumerate}
+\end{lemma}
+
+\subsection*{Равносильные преобразования формул}
+
+\begin{lemma}[Правило замены] 
+    Если формулы $\Phi$, $\Phi '$ равносильны, то для любой формулы $\Uppsi(X)$, содержащей переменную $X$, выполняется равенство: $\Uppsi(\Phi) = \Uppsi(\Phi')$.
+\end{lemma}
+
+Это правило означает, что при замене в любой формуле $\Uppsi = \Uppsi(\Phi)$ некоторой ее подформулы $\Phi$ на равносильную ей формулу $\Phi'$ получается формула $\Uppsi = \Uppsi(\Phi')$, равносильная исходной формуле $\Uppsi$.
+
+Такие переходы называются \textit{равносильными преобразованиями формул}.
+
+\begin{example}
+    Формула $\Phi = (X\Rightarrow Y) \Rightarrow Z$ с помощью равенств 5, 7, 8 из леммы 1 равносильно преобразовывается следующим образом:
+
+    $\Phi = (X\Rightarrow Y)\Rightarrow Z = \lnot(X\Rightarrow Y)\lor Z = \lnot(\lnot(X\land\lnot Y))\lor Z = (X\land \lnot Y)\lor Z$.
+\end{example}

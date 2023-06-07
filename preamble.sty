@@ -1,0 +1,78 @@
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[sort,compress]{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physymb}
+\usepackage{ stmaryrd }
+\usepackage{fancyvrb}
+\usepackage{thmtools}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[english,russian]{babel}
+\usepackage{minted}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usepackage{gauss}
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{enumitem}
+% Обозначение множества натуральных чисел
+\newcommand{\Nat}{\mathbb{N}}
+% Обозначение множества вещественных чисел
+\newcommand{\Real}{\mathbb{R}}
+% Обозначение множества целых чисел
+\newcommand{\Zint}{\mathbb{Z}}
+% Обозначение множества комплексных чисел
+\newcommand{\Complex}{\mathbb{C}}
+% Обозначение эпсилона
+\newcommand{\eps}{\varepsilon}
+% \/\/ Теорема \/\/
+\newtheorem{theorem}{Теорема}[]
+
+% Красивый section
+%\titleformat{\section}[block]{\Large\bfseries\filcenter}{}{1em}{}
+
+% \/\/ Определение \/\/
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[]
+
+% \/\/ Лемма \/\/
+\theoremstyle{plain}
+\newtheorem*{lemma}{Лемма}
+
+% \/\/ Следствие \/\/
+\theoremstyle{plain}
+\newtheorem*{corollary}{Следствие}
+
+% \/\/ Пример \/\/
+\theoremstyle{definition}
+\newtheorem*{example}{Пример}
+
+% \/\/ Замечание \/\/
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+% \/\/ Док-во \/\/
+\declaretheoremstyle[
+    spaceabove=-6pt, 
+    spacebelow=6pt, 
+    %headfont=\normalfont\bfseries, 
+    bodyfont = \normalfont,
+    postheadspace=1em, 
+    qed=$\blacksquare$, 
+    headpunct={}]
+{Cool_Proof_style} 
+\declaretheorem[name={$\square$}, style=Cool_Proof_style, unnumbered]{Proof}
+
+% modify some things in gmatrix environments
+\renewcommand\rowmultlabel{}
+\renewcommand\colmultlabel{}
+\setlength\rowarrowsep{0pt}
+\setlength\rowopminsize{0pt}
+
+\setlength\extrarowheight{5pt}
