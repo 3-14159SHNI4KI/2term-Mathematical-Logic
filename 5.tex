@@ -66,5 +66,51 @@
 \subsection*{Алгоритм нахождения СДНФ и СКНФ формулы \\$\Phi = \Phi(X_1,\ldots,X_n)$:}
 \begin{enumerate}
     \item Составить истинностную таблицу формулы $\Phi$ и добавить два столбца <<Совершенные конъюнкты>> и <<Совершенные дизъюнкты>>
-    \item Если при значениях 
+    
+    \item Если при значениях $\lambda(X_1) = k_1,\ldots,\lambda(X_n) = k_n$ значение $\lambda(\Phi(X_1,\ldots,X_n))$ формулы $\Phi$ равно 1, то в соответствующей строке таблицы в столбце <<Совершенные конъюнкты>> записываем конъюнкт $X_1^{k_1}\land\ldots\land X_n^{k_n}$ и в столбце <<Совершенные дизъюнкты>> делаем прочерк. При этом $X_i^1 = X_i$ и $X_i^0 = \lnot X_i$.
+    
+    \item Если при значениях $\lambda(X_1) = m_1,\ldots,\lambda(X_n) = m_n$ истинностное значение $\lambda(\Phi(X_1,\ldots,X_n))$ формулы $\Phi$ равно 0, то в соответствующей строке таблицы в столбце <<Совершенные дизъюнкты>> записываем дизъюнкт $X_1^{1-m_1}\lor\ldots\lor X_n^{1-m_n}$ и в столбце <<Совершенные конъюнкты>> делаем прочерк.
 \end{enumerate}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        $X_1$    & $\ldots$ & $X_n$    & $\ldots$ & $\Phi(X_1,\ldots,X_n)$ & \begin{tabular}[c]{@{}c@{}}Совершенные\\  конъюнкты\end{tabular} & \begin{tabular}[c]{@{}c@{}}Совершенные \\ дизъюнкты\end{tabular} \\ \hline
+        $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$               & $\ldots$                                                         & $\ldots$                                                         \\ \hline
+        $k_1$    & $\ldots$ & $k_n$    & $\ldots$ & 1                      & $X_1^{k_1}\land\ldots\land X_n^{k_n}$                            & "---                                                             \\ \hline
+        $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$               & $\ldots$                                                         & $\ldots$                                                         \\ \hline
+        $m_1$    & $\ldots$ & $m_n$    & $\ldots$ & 0                      & "---                                                             & $X_1^{1-m_1}\lor\ldots\lor X_n^{1-m_n}$                          \\ \hline
+        $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$               & $\ldots$                                                         & $\ldots$                                                         \\ \hline
+        \end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \item[4.] СДНФ формулы $\Phi$ равна дизъюнкции полученных совершенных конъюнктов:
+    $(X_1^{k_1}\land\ldots\land X_n^{k_n})\lor\ldots$
+    \item[5. ] СКНФ формулы $\Phi$ равна конъюнкции полученных совершенных дизъюнктов: $(X_1^{1-m_1}\lor\ldots\lor X_n^{1-m_n})\land\ldots$
+\end{enumerate}
+
+\begin{example}
+    Найдем СДНФ и СКНФ для формулы
+
+    $\Phi(X,Y,Z) = \lnot(X\land Y)\Rightarrow\lnot(X\lor Z)$
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            $X$ & $Y$ & $Z$ & $\Phi(X,Y,Z)$ & Совершенные конъюнкты     & Совершенные дизъюнкты              \\ \hline
+            0   & 0   & 0   & 1             & $X^0\land Y^0 \land Z^0$  & "---                               \\ \hline
+            0   & 0   & 1   & 0             & "---                      & $X^{1-0}\lor Y^{1-0} \lor Z^{1-1}$ \\ \hline
+            0   & 1   & 0   & 1             & $X^0 \land Y^1 \land Z^0$ & "---                               \\ \hline
+            0   & 1   & 1   & 0             & "---                      & $X^1 \lor Y^0 \lor Z^0$            \\ \hline
+            1   & 0   & 0   & 0             & "---                      & $X^0 \lor Y^1 \lor Z^1$            \\ \hline
+            1   & 0   & 1   & 0             & "---                      & $X^0 \lor Y^1 \lor Z^0$            \\ \hline
+            1   & 1   & 0   & 1             & $X^1 \land Y^1 \land Z^0$ & "---                               \\ \hline
+            1   & 1   & 1   & 1             & $X^1 \land Y^1 \land Z^1$ & "---                               \\ \hline
+            \end{tabular}
+    \end{center}
+
+    СДНФ $\Phi = (\lnot X \land\lnot Y \lnot Z)\lor(\lnot X\land Y \lnot Z)\lor(X\land Y\land \lnot Z)\lor(X\land Y \land Z)$
+
+    СКНФ $\Phi = (X\lor Y\lor \lnot Z)\land(X\lor \lnot Y \lor \lnot Z)\land(\lnot X \lor Y \lor Z)\land(\lnot X\lor Y \lor \lnot Z)$
+
+\end{example}
