@@ -1,0 +1,108 @@
+\subsection*{Метод резолюций в алгебре высказываний}
+Следующие задачи равносильны:
+\begin{enumerate}
+    \item Проверка тождественной истинности формул
+    \item Проверка логического следования формул
+    \item Проверка тождественной ложности формул
+    \item Проверка противоречивости множества формул
+    \item Проверка противоречивости множества дизъюнктов
+\end{enumerate}
+
+\begin{definition}
+    Пусть для некоторой переменной $X$ дизъюнкты $D_1, D_2$ представимы в виде $D_1=D_1'\lor X$, $D_2=D_2'\lor\lnot X$. Тогда дизъюнкт $D_1'\lor D_2'$ называется \textit{резовльвентой дизъюнктов} $D_1,D_2$ по переменной $X$ и обозначается $\text{Res}_X(D_1,D_2)$.
+
+    Резольвента дизъюнктов $D_1,D_2$ по некоторой переменной $X$ называется \textit{резольвентой дизъюнктов} $D_1,D_2$ и обозначается Res$(D_1,D_2)$. 
+    
+    По определению Res$(X,\lnot X) = 0$.
+\end{definition}
+
+\textbf{Свойство.} Если $D_1=D_1'\lor X$, $D_2=D_2'\lor\lnot X$ выполнимы, то выполнима Res$_X(D_1,D_2)$.
+
+\begin{definition}
+    \textit{Резолютивным выводом формулы} $\Phi$ из множества дизъюнктов $S=\{D_1,\ldots,D_m\}$ называется такая последовательность формул $\Phi_1,\ldots,\Phi_n$, что:
+    \begin{enumerate}
+        \item $\Phi_n = \Phi$
+        \item Каждая из формул $\Phi_i$ $(i=1,\ldots,n)$ либо принадлежит множеству $S$, либо является резолвьентой $\Phi_i=$ Res$(\Phi_j,\Phi_k)$ предыдущих формул $\Phi_j$, $\Phi_k$ при некоторых $1\leq j$, $k\leq i$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Основная теорема метода резолюций]
+    Множество дизъюнктов $S = \{D_1,\ldots,D_m\}$ противоречиво в том и только том случае, если существует резолютивный вывод значения 0 из множества $S$.
+    
+    Так как по критерию логического следования соотношение 
+    $$\Phi_1,\ldots,\Phi_m\models \Phi$$ равносильно условию $$\Phi_1,\ldots,\Phi_m,\lnot\Phi\models,$$ то справедлив следующий результат.
+\end{theorem}
+
+\begin{corollary}[Проверка логического следования формул]
+    Пусть для формул $\Phi_1,\ldots,\Phi_n,\Phi$ формула $\Uppsi=\Phi_1\land\ldots\land\Phi_n\land\lnot\Phi$ имеет КНФ \\ $\Uppsi=D_1\land\ldots\land D_m$.
+
+    Тогда логическое следование $\Phi_1,\ldots,\Phi_n\models\Phi$ равносильно существованию резолютивного вывода значения 0 из множества дизъюнктов $S=\{D_1,\ldots,D_m\}$.
+\end{corollary}
+
+\subsection*{Алгоритм проверки логического следования формул $\Phi_1,\ldots\Phi_n\models\Phi$:}
+\begin{enumerate}
+    \item Составить формулу $\Uppsi=\Phi_1\land\ldots\land\Phi_n\land\lnot\Phi$ и найти ее КНФ \\ $\Uppsi=D_1\land\ldots\land D_m$.
+    \item Найти резолютивный вывод значения 0 из множества $S = \{D_1,\ldots,D_m\}$.
+    \item Если такой вывод существует, то выполняется $\Phi_1,\ldots,\Phi_n\models \Phi$.
+\end{enumerate}
+
+\begin{example}
+    Методом резолюций проверим логическое следование: \\
+    $(\lnot X\Rightarrow Z),(Y\Rightarrow W),((W\land Z)\Rightarrow V), (\lnot V) \models X \lor \lnot Y$
+
+    Данное соотношение равносильно условию \\
+    $(\lnot X\Rightarrow Z),(Y\Rightarrow W),((W\land Z)\Rightarrow V), (\lnot V), \lnot (X\lor\lnot Y)\models$, \\т.е. условию противоречивости формулы \\
+    $\Uppsi = (\lnot X\Rightarrow Z)\land(Y\Rightarrow W)\land((W\land Z)\Rightarrow V)\land (\lnot V)\land \lnot (X\lor\lnot Y)$.
+
+    Найдем КНФ этой формулы:
+    $\Uppsi=(X\lor Z)\land(\lnot Y\lor W)\land (\lnot(W\land Z)\lor V)\land\lnot V\land(\lnot X\land Y) = (X\lor Z)\land(\lnot Y\lor W)\land(\lnot W\lor\lnot Z\lor V)\land\lnot V\land\lnot X\land Y$.
+
+    Рассмотрим множество дизъюнктов \\
+    $S = \{X\lor Z,\lnot Y\lor W,\lnot W\lor\lnot Z\lor V,\lnot V,\lnot X, Y\}$. Построим резолютивный вывод значения 0 из этого множества $S$:
+
+    $\Phi_1 = $ Res$_X(X\lor Z,\lnot X) = Z$
+
+    $\Phi_2 = $ Res$_Y(\lnot Y\lor W,Y) = W$
+
+    $\Phi_3 = $ Res$_Z(\lnot W\lor\lnot Z\lor V, Z) = \lnot W \lor V$
+
+    $\Phi_4 = $ Res$_W(\Phi_2,\Phi_3) = V$
+
+    $\Phi_5 = $ Res$(\Phi_4\lnot V) = 0$
+
+    Таким образом, множество дизъюнктов формулы $\Uppsi$ противоречиво и, значит, выполняется исходное логическое следование.
+\end{example}
+
+\subsection*{Алгоритм проверки тождественной истинности формулы Ф:}
+1.Рассмотреть формулу $\Uppsi=\lnot \Phi$ и найти ее КНФ $\Uppsi = D_1\land\ldots\land D_m$.
+
+2. Найти резолютивный вывод значения 0 из множества $S = \{D_1,\ldots,D_m\}$.
+
+3. Если такой вывод существует, то выполняется $\models\Phi$.
+
+\begin{example}
+    Методом резолюций проверить тождественную истинность формулы 
+    $$\Phi=(X\Rightarrow Y)\Rightarrow((X\Rightarrow\lnot Y)\Rightarrow\lnot X)$$
+    \textbf{Решение.} По критерию логического следования тавтологии $\models \Phi$ равносильности противоречивости формулы: $$\Uppsi = \lnot\Phi = \lnot((X\Rightarrow Y)\Rightarrow ((X\Rightarrow\lnot Y)\Rightarrow\lnot X)).$$
+
+    Найдем КНФ этой формулы $$\Uppsi = \lnot(\lnot(\lnot X\lor Y)\lor(\lnot(\lnot X\lor\lnot Y)\lor\lnot X)) = (\lnot X\lor Y)\land(\lnot X\lor\lnot Y)\land X.$$
+
+    Рассмотрим множество дизъюнктов полученной КНФ формулы $\Uppsi$:
+    $$S = \{\lnot X\lor Y,\lnot X\lor\lnot Y, X\}$$.
+
+    Построим резолютивный вывод значения 0 из этого множества $S$:
+
+    $\Phi_1 = \lnot X\lor Y$
+
+    $\Phi_2 = \lnot X\lor\lnot Y$
+
+    $\Phi_3 =$ Res$_Y(\Phi_1,\Phi_2) =$ Res$_Y(\lnot\lor Y,\lnot X\lor\lnot Y) = \lnot X\lor\lnot X = \lnot X$ 
+
+    $\Phi_4 = X$
+
+    $\Phi_5 = $ Res$(\Phi_3,\Phi_4) = $ Res$(\lnot X, X) = 0$
+
+    Таким образом, из множества дизъюнктов $S$ резолютивно выводится значение 0 и по основной теореме множество $S$ противоречиво. 
+
+    Следовательно, формула $\Uppsi$ противоречива и выполняется $\models\Phi$.
+\end{example}
