@@ -1,0 +1,48 @@
+\subsection*{Логическое следование формул алгебры предикатов}
+С помощью логического следования формул 
+определяются общие способы доказательства 
+взаимосвязи между истинностными значениями 
+утверждений посредством исследования 
+формальной структуры этих утверждений.
+
+\begin{definition}
+    Формула $\Phi$ алгебры предикатов называется \textit{логическим следствием} формулы $\Uppsi$, если $\models\Uppsi\Rightarrow\Phi$, т.е. в любой интерпретации $M$ формула $\Phi$ выполняется при любой оценке предметных переменных $a$, при которой выполняется формула $\Uppsi$.
+\end{definition}
+
+\begin{definition}
+    Формула $\Phi$ называется \textit{логическим следствие множества формул $\Gamma $}, если в любой интерпретации $M$ формула $\Phi $ выполняется при любой оценке предметных переменных $a$, при которой выполняются все формулы из $Gamma$.
+
+    Такое логическое следствие обозначается $\Gamma\models\Phi$ и называется \textit{логическим следованием}. При этом формулы из $\Gamma $ называются \textit{посылками} и формула $\Phi$ -- \textit{следствием} логического следования $\Gamma\models\Phi$.
+
+    В случае, когда $\Gamma = {\Phi_1,\ldots,\Phi_m}$ записывают $\Phi_1,\ldots,\Phi_m\models\Phi$.
+\end{definition}
+
+\begin{definition}
+    Множество формул $Gamma$ называется \textit{противоречивым}, если из него логическим следует любая (в том числе и тождественно ложная) формула $\Phi$. 
+
+    Символически это записывается $\Gamma\models$.
+\end{definition}
+
+\begin{lemma}[Лемма 1. Критерии логического следования]
+    Условие $\Phi_1,\ldots,\Phi_m\models\Phi$ равносильно каждому из следующих условий:
+    \begin{itemize}
+        \item $\Phi_1\land\ldots\land\Phi_m\models\Phi$
+        \item $\models\Phi_1\land\ldots\land\Phi_m\Rightarrow\Phi$
+        \item $\Phi_1,\ldots,\Phi_m,\lnot\Phi\models$
+    \end{itemize}
+    В частности, $\Phi\models\Uppsi$ равносильно $\models\Phi\Rightarrow\Uppsi$. 
+
+    Отсюда также следует, что $\Phi=\Uppsi$ равносильно тому, что $\Phi\models\Uppsi$ и $\Uppsi\models\Phi$.
+\end{lemma}
+
+\subsection*{Основные правила логического следования}
+\begin{enumerate}
+    \item \textit{Правило отделения} (или правило \textit{модус поненс} -- от лат. modus ponens)
+    $$\Phi,\Phi\Rightarrow\Uppsi\models\Uppsi$$
+    \item \textit{Правило модус толенс} (от лат. modus tollens)
+    $$\Phi\Rightarrow\Uppsi, \lnot\Uppsi\models\lnot\Phi$$
+    \item \textit{Правило контрапозиции}
+    $$\Phi\Rightarrow\Uppsi\models\lnot\Uppsi\Rightarrow\lnot\Phi$$
+    \item \textit{Правило цепного заключения}
+    $$\Phi_1\Rightarrow\Phi_2,\Phi_2\Rightarrow\Phi_3\models\Phi_1\Rightarrow\Phi_3$$
+\end{enumerate}

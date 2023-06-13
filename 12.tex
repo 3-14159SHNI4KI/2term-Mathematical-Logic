@@ -1,0 +1,140 @@
+%Логическое равенство формул алгебры предикатов. Свойства логических операций над предикатами
+%логическое следование
+\subsection*{Тавтологии алгебры предикатов}
+Любая тавтология алгебры высказываний 
+является тавтологией алгебры предикатов. 
+Более того, тавтологии алгебры высказываний 
+дают возможность легко получать тавтологии 
+алгебры предикатов с помощью следующего 
+очевидного результата.
+
+\begin{lemma}[1]
+    Если $\Phi(X_1,\ldots,X_n)$ "--- тавтология 
+алгебры высказываний, то для любых формул 
+алгебры предикатов $\Phi_1,\ldots,\Phi_n$ формула $\Phi(\Phi_1,\ldots,\Phi_n)$
+является тавтологией алгебры предикатов.
+
+С другой стороны, в алгебре предикатов можно 
+получить много принципиально новых тавтологий с 
+помощью следующих свойств кванторов.
+\end{lemma}
+
+\begin{lemma}[2]
+    Для любых формул $\Phi,\Uppsi$ следующие 
+формулы являются тавтологиями:
+
+\begin{enumerate}
+    \item $\lnot(\forall x)\Phi \Leftrightarrow (\exists x)\lnot\Phi$ \qquad
+    $\lnot(\exists x)\Phi\Leftrightarrow (\forall x)\lnot\Phi$ 
+
+    $(\forall x)\Phi\Leftrightarrow\lnot(\exists x)\lnot\Phi$ \qquad
+    $(\exists x)\Phi\Leftrightarrow\lnot(\forall x)\lnot\Phi$
+
+
+    \item $(\forall x)(\forall y)\Phi\Leftrightarrow(\forall y)(\forall x)\Phi$
+    
+    $(\exists x)(\forall y)\Phi\Rightarrow(\forall y)(\exists x)\Phi$
+
+
+    \item $(\forall x)(\Phi\land\Uppsi)\Leftrightarrow(\forall x)\Phi\land(\forall x)\Uppsi$
+    
+    $(\exists x)(\Phi\lor\Uppsi)\Leftrightarrow(\exists x)\Phi\lor(\exists x)\Uppsi$
+
+
+    \item $(\forall x)(\Phi \pi \Uppsi)\Leftrightarrow(\forall x)\Phi\pi\Uppsi$, где $\pi$ -- символ одной из операций $\land,\lor$
+    
+    \item $(\exists x)(\Phi\pi\Uppsi)\Leftrightarrow(\exists x)\Phi\pi\Uppsi$, где $\pi$ -- символ одной из операций $\land,\lor$
+    
+    если в формулу $\Uppsi$ предметная переменная $x$ не входит свободно, а также
+
+    \item $(\forall x)(\Phi\Rightarrow\Uppsi)\Leftrightarrow((\exists x)\Phi\Rightarrow\Uppsi)$
+    
+    $(\exists x)(\Phi\Rightarrow\Uppsi)\Leftrightarrow((\forall x)\Phi\Rightarrow\Uppsi)$
+
+    \item $(\forall x)(\Uppsi\Rightarrow\Phi)\Leftrightarrow(\Uppsi\Rightarrow(\forall x)\Phi)$
+    
+    $(\exists x)(\Uppsi\Rightarrow\Phi)\Leftrightarrow(\Uppsi\Rightarrow(\exists x)\Phi)$
+
+\end{enumerate}
+
+\end{lemma}
+
+\subsection*{Логическая равносильность формул алгебры предикатов}
+
+\begin{definition}
+    Формулы алгебры предикатов 
+$\Phi,\Uppsi$ называются \textit{логически равносильными}, если 
+результат применения к ним логической 
+операции эквивалентность $\Phi\Leftrightarrow\Uppsi$ является 
+тавтологией. 
+В этом случае записывают $\Phi\equiv\Uppsi$, или просто 
+$\Phi = \Uppsi$.
+Таким образом, $\Phi = \Uppsi$ означает, что $\models\Phi\Leftrightarrow\Uppsi$.
+\end{definition}
+
+\begin{theorem}[Теорема 1. Взаимосвязь между кванторами]
+    Для любой формулы $\Phi$ справедливы равенства:
+
+    \quad $(\forall x)(\forall y)\Phi = (\forall y)(\forall x)\Phi$, \quad
+    $(\exists x)(\exists y)\Phi = (\exists y)(\exists x)\Phi$.
+
+    С другой стороны, если в формулу $\Phi$ предметные переменные $x,y$ входят свободно, то равенство $(\forall y)(\exists x)\Phi = (\exists x)(\forall y)\Phi$ не выполняется, так как в этом случае формула $(\forall y)(\exists x)\Phi \Rightarrow (\exists x)(\forall y)\Phi$ не является тавтолгией
+\end{theorem}
+
+\begin{theorem}[Теорема 2]
+    Пусть формула $\Phi(x)$ не содержит предметную переменную $y$ и формула $\Phi(y)$ получается из $\Phi(x)$ заменой всех свободных вхождений переменной $x$ на предметную переменную $y$.
+
+    Тогда формулы $(\forall x)\Phi(x)$ и $(\exists x)\Phi(x)$ будут логически равносильны соответственно формулам $(\forall y)\Phi(y)$ и $(\exists y)\Phi(y)$, т.е. выполняются равенства:
+
+    $(\forall x)\Phi(x) = (\forall y)\Phi(y)$ и $(\exists x)\Phi(x)=(\exists y)\Phi(y)$.
+\end{theorem}
+
+\begin{theorem}[Теорема 3. Законы де Моргана для кванторов] 
+    Для любой формулы $\Phi$ справедливы следующие утверждения:
+
+    $\lnot(\forall x)\Phi=(\exists x)\lnot\Phi$ \qquad 
+    $\lnot(\exists x)\Phi=(\forall x)\lnot \Phi$
+
+    $(\forall x)\Phi =\lnot(\exists x)\lnot\Phi$ \qquad
+    $(\exists x)\Phi = \lnot(\forall x)\lnot\Phi$
+\end{theorem}
+
+\begin{theorem}[Теорема 4. Взаимосвязь кванторов с конъюнкцией и дизъюнкцией]
+    Для любых формул $\Phi,\Uppsi$ справедливы следующие утверждения:
+
+    $(\forall x)(\Phi\land\Uppsi) = (\forall x)\Phi\land(\forall x)\Uppsi$
+
+    $(\exists x)(\Phi\lor\Uppsi) = (\exists x)\Phi\lor(\exists x)\Uppsi$
+    
+    Если в формулу $\Uppsi$ предметная переменная $x$ не входит свободно, то справедливы такэе утверждения:
+
+    $(\forall x)\Phi\pi\Uppsi = (\forall x)(\Phi\pi\Uppsi)$,
+
+    $(\exists x)\Phi\pi\Uppsi = (\exists x)(\Phi\pi\Uppsi)$,
+
+    где $\pi$ -- символ одной из операций $\land,\lor$.
+\end{theorem}
+
+\begin{theorem}[Теорема 6. Взаимосвязь кванторов с импликацией]
+    Если в формулу $\Phi$ предметная переменная $x$ не входит свободно, то для любой формулы $\Uppsi$ справедливы следующие утверждения:
+
+    $(\forall x)(\Phi\Rightarrow\Uppsi) = \Phi \Rightarrow (\forall x)\Uppsi$
+
+    $(\exists x)(\Phi\Rightarrow\Uppsi) = \Phi \Rightarrow (\exists x)\Uppsi$
+
+    Если же предметная переменная $x$ не входит свободно в формулу $\Uppsi$, то для любой формулы $\Phi$ справедливы утверждения:
+
+    $(\forall x)(\Phi\Rightarrow\Uppsi) = (\exists x)\Phi\Rightarrow\Uppsi$
+
+    $(\exists x)(\Phi\Rightarrow\Uppsi) = (\forall x)\Phi\Rightarrow\Uppsi$
+\end{theorem}
+
+\begin{corollary}[Следствие 7]
+    Любая формула $\Phi$ представляется в следующем виде:
+    $$\Phi = (K_1 x_1)\ldots(K_n x_n)\Uppsi,$$
+    
+    где $K_1,\ldots,K_n$ -- некоторые кванторы и $\Uppsi$ -- формула без кванторов.
+
+    Таким образом, каждая формула $\Phi$ логически равносильна формуле $(K_1 x_1)\ldots(K_n x_n)\Uppsi$, в которой все кванторы стоят в самом начале формулы и которая называется \textit{предваренной нормальной формой} (cокращенно ПНФ) формулы $\Phi$.
+
+\end{corollary}
