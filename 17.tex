@@ -1,0 +1,109 @@
+\subsection*{Унификаторы формул}
+\begin{example}
+    В алгебре высказываний контрарные литеры $X, \lnot X$.
+
+    В алгебре предикатов литеры $P(a,y),\lnot P(x,f(b))$ не являются контрарными, но при замене переменных 
+    $\theta = \begin{pmatrix} x & y \\ a & f(b)\end{pmatrix}$
+    получаем контрарные литеры $P(a,f(b)), \lnot P(a,f(b))$.
+\end{example}
+
+\begin{definition}
+    Элементы области интерпретации могут описываться не только с помощью предметных переменных, но и с помощью так называемых \textit{термов} -- специальных выражений языка, которые индуктивно определяются следующим образом:
+    \begin{enumerate}
+        \item Все предметные переменные и предметные символы формулы являются термами
+        \item Если $f$ -- $n-$арный функциональный символ формулы и $t_1,\ldots,t_n$ -- термы, то выражение $f(t_1,\ldots,t_n)$ является термом
+    \end{enumerate}
+\end{definition}
+
+Пусть $S$ -- множество формул алгебры предикатов.
+
+Обозначим $X_S,C_S,$ и $F_S$ соответственно множества всех предметных переменных, предметныъ символов и функциональных символов, встречающихся в формулах множества $S$. Пусть $A_S$ -- обхединение множеств $X_S$ и $C_S$ с добавленным новым постоянным символом $a$, если $C_S = \varnothing$.
+
+На множестве $A_S$ определяется множество всех термов $T_S$ множества $S$ с функциональными символами из множества $F_S$. В частности, каждая переменная $x \in X_S$  является термом из множества $T_S$ и, значит, $X_S \subset T_S$.
+
+\begin{definition}
+    Отображения $\theta$ множества переменных $X_S$ в множество термов $T_S$ называются \textit{подстановками} и обозначаются 
+    \begin{equation*}
+        \theta = 
+        \begin{pmatrix} 
+            x_1 & \ldots & x_n \\ 
+            t_1 & \ldots & t_n 
+        \end{pmatrix},
+    \end{equation*}
+    где $t_i=\theta(x_i)$ для всех $x_i \in sup \theta$, удовлетворяющих $\theta(x_i)\neq x_i (i=\overline{1,n})$.
+\end{definition}
+
+Композиция подстановок
+$$\theta = \begin{pmatrix} x_1 & \ldots & x_n \\     t_1 & \ldots & t_n \end{pmatrix},\lambda = \begin{pmatrix} y_1 & \ldots & y_m \\     s_1 & \ldots & s_m \end{pmatrix}$$
+является подстановкой 
+$$\theta\lambda = \begin{pmatrix} x_{i_1} & \ldots & x_{i_k} \\ \lambda(t_{i_1}) & \ldots & \lambda(t_{i_k}) \end{pmatrix},$$
+где $x_{i_j}\in dom \theta\lambda=\theta^{-1}(dom \lambda)$ и $\lambda(t_{i_j})\neq x_{i_j}$ для всех $j=\overline{1,k}$.
+
+Хорошо известно, что $(\theta\lambda)\gamma=\theta(\lambda\gamma)$.
+
+dom(от англ. domain) -- область определения
+
+\begin{example}
+    Композицией подстановок
+
+    \begin{equation*}
+        \theta = \begin{pmatrix}
+            x & y & z \\
+            c & x & f(y)
+        \end{pmatrix},
+        \lambda = \begin{pmatrix}
+            x & y \\
+            f(c) & c 
+        \end{pmatrix}
+    \end{equation*}
+
+    является подстановка
+
+    \begin{equation*}
+        \theta\lambda = \begin{pmatrix}
+            x & y & z \\
+            \lambda(c) & \lambda(x) & \lambda(f(y))
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            x & y & z \\
+            c & f(c) & f(c)
+        \end{pmatrix}
+    \end{equation*}
+
+    С другой стороны, композицией подстановок
+    \begin{equation*}
+        \theta = \begin{pmatrix}
+            x & y \\
+            f(y) & z
+        \end{pmatrix},
+        \lambda = \begin{pmatrix}
+            x & y & z\\
+            c & f(c) & y 
+        \end{pmatrix}
+    \end{equation*}
+    является подстановка
+    \begin{equation*}
+        \theta\lambda = \begin{pmatrix}
+            x & y & z \\
+            \lambda(f(y)) & \lambda(z) & \lambda(z)
+        \end{pmatrix}
+        = \begin{pmatrix}
+            x & z \\
+            f(f(c)) & y
+        \end{pmatrix}
+    \end{equation*}
+\end{example}
+
+Действие подстановки $\theta$ естественно продолжается на термы из $T_S$, атомарные формулы, встрачающиеся в формула множества $S$, и дизъюнкты из $S$.
+
+Например, для терма $t = t(x_1,\ldots,x_n)$ значение $\theta(t)=t(\theta(x_1),\ldots,\theta(x_n))$.
+
+Аналогично, для формулы $D$ значение $\theta(D)$ -- есть формула, полученная заменой всех вхождений в $D$ термов $t$ на термы $\theta(t)$.
+
+Пусть $W=\{\Phi_1,\ldots,\Phi_k\}$ -- множество атомарнх формул, встречающихся в формулах из множества $S$. Подстановка $\theta$ называется \textit{унификатором множества формул W}, если $$\theta(\Phi_1)=\ldots=\theta(\Phi_k).$$
+Говорят, что множество атомарных формул $W$ \textit{унифицируемо}, если для него существует унификатор.
+
+\begin{example}
+    Множество формул $$\{P(b,y),P(x,f(c))\}$$ с бинарным предикатным символом $P$, унарным функциональным символом $f$ и предметными символами $b,c$ унифицируемо, так как подстановка $\theta = \begin{pmatrix} x & y \\ b & f(c) \end{pmatrix}$ является его унификатором.
+\end{example}
