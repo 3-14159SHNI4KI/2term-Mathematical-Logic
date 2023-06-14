@@ -1,0 +1,43 @@
+\subsection*{Исчисление предикатов}
+Множество аксиом $Ax$(ИП) исчисления предикатов описывается пятью \textit{схемами аксиом} -- тремя определенными в предыдущем разделе, и двумя новыми схемами:
+
+\begin{enumerate}
+    \item $(A_1)(\Phi\Rightarrow(\Uppsi\Rightarrow\Phi))$,
+
+    \item $(A_2)((\Phi_1\Rightarrow(\Phi_2\Rightarrow\Phi_3))\Rightarrow((\Phi_1\Rightarrow\Phi_2)\Rightarrow(\Phi_1\Rightarrow\Phi_3)))$,
+    
+    \item $(A_3)((\lnot\Phi\Rightarrow\lnot\Uppsi)\Rightarrow((\lnot\Phi\Rightarrow\Uppsi)\Rightarrow\Phi))$
+    
+    (где $\Phi,\Uppsi,\Phi_i(i=1,2,3)$ -- произвольные формулы исчисления высказываний).
+    \item $(A_4)(\forall x)\Phi(x)\Rightarrow\Phi(y)$, \\ для произвольной формулы $\Phi(x)$, в которую $y$ не выходит связно
+    \item $(A_5)(\forall x)(\Phi\Rightarrow\Uppsi(x))\Rightarrow(\Phi\Rightarrow(\forall x)\Uppsi(x))$, \\ для таких формул $\Phi,\Uppsi$, что $x$ в формулу $\Phi$ не выходит свободно
+\end{enumerate}
+
+Исчисление предикатов имеет два \textit{правила вывода}, которые для произвольных формул исчисления предикатов $\Phi,\Uppsi$ символически записываются следующими схемами:
+\begin{enumerate}
+    \item Правило modus ponens (обозн. MP)
+    $$MP: \frac{\Phi\Rightarrow\Uppsi,\Phi}{\Uppsi}$$
+    \item Правило обобщения (обозн. Gen)
+    $$Gen: \frac{\Phi}{(\forall x)\Phi}$$
+\end{enumerate}
+
+\begin{definition}
+    Формула $\Phi$ называется \textit{теоремой исчисления предикатов}, если найдется такая последовательность $\Phi_1,\ldots,\Phi_n$, в которой $\Phi_n=\Phi$ и каждая формула $\Phi_i(1\leq i \leq n)$ либо является аксиомой, либо получается из некоторых предыдущих формул этой последовательности $\Phi_j(1\leq j < i)$ по одному из правил вывода $MP$ или $Gen$.
+
+    При этом $\Phi_1,\ldots,\Phi_n$ называется \textit{выводом} или \textit{доказательством} формулы $\Phi$.
+\end{definition}
+
+\begin{definition}
+    Вывод формулы $\Phi$ обозначают $\vdash\Phi$ и говорят, что <<$\Phi$ есть теорема>>. Множество всех таких теорем обозначается символом $Th$(ИП) и называется \textit{теорией исчисления предикатов}.
+
+    Цель построения исчисления предикатов -- определение такой теории $Th$(ИП), которая совпадает с множеством тавтологий $\mathscr{T}_{\text{АП}}$. 
+\end{definition}
+
+\begin{lemma}
+    Справедливы следующие утверждения:
+    \begin{enumerate}
+        \item Всякая аксиома ИП является тавтологией
+        \item Результат применения правила вывода $MP$ и $Gen$ к тавтологиям является тавтологией
+        \item Любая теорема ИП является тавтологией ИП, т.е. имеет место включение $Th$(ИП)$\subset\mathscr{T}_{\text{АП}}$
+    \end{enumerate}
+\end{lemma}
